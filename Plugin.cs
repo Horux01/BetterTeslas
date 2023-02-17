@@ -2,6 +2,7 @@
 using Server = Exiled.Events.Handlers.Server;
 using Player = Exiled.Events.Handlers.Player;
 using Tesla = Exiled.API.Features.TeslaGate;
+using System;
 
 namespace BetterTeslas
 {
@@ -9,6 +10,10 @@ namespace BetterTeslas
     {
         public static Plugin Singleton;
         private EventHandlers Handler;
+
+        public override string Author => "Horus";
+        public override Version Version => new Version(1, 0, 0);
+        public override Version RequiredExiledVersion => new Version(6, 0, 0);
 
         public override void OnEnabled()
         {
