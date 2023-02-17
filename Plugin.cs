@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Features;
+using Server = Exiled.Events.Handlers.Server;
 using Player = Exiled.Events.Handlers.Player;
 using Tesla = Exiled.API.Features.TeslaGate;
 
@@ -13,6 +14,7 @@ namespace BetterTeslas
         {
             Singleton = this;
             Handler = new EventHandlers(this);
+            Server.WaitingForPlayers += Handler.OnWaitingForPlayers;
             Player.Spawned += Handler.OnSpawned;
             Player.ChangingItem += Handler.OnChangingItem;
             Player.DroppingItem += Handler.OnDroppingItem;
@@ -24,6 +26,7 @@ namespace BetterTeslas
         }
         public override void OnDisabled()
         {
+            Server.WaitingForPlayers -= Handler.OnWaitingForPlayers;
             Player.Spawned -= Handler.OnSpawned;
             Player.ChangingItem -= Handler.OnChangingItem;
             Player.DroppingItem -= Handler.OnDroppingItem;

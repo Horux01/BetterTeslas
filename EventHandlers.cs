@@ -17,6 +17,7 @@ namespace BetterTeslas
 
         public static List<Player> HasCustomRole = new List<Player>();
 
+        public void OnWaitingForPlayers() => HasCustomRole.Clear();
         public void OnSpawned(SpawnedEventArgs ev) => Timing.RunCoroutine(ev.Player.CheckCustomRoles());
         public void OnChangingItem(ChangingItemEventArgs ev)
         {
