@@ -16,7 +16,7 @@ namespace BetterTeslas.Extensions
 
         public static IEnumerator<float> CheckCustomRoles(this Player player)
         {
-            yield return Timing.WaitForSeconds(0.1f);
+            yield return Timing.WaitForOneFrame;
 
             try
             {

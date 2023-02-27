@@ -16,6 +16,7 @@ namespace BetterTeslas
         public EventHandlers(Plugin plugin) => this.plugin = plugin;
 
         public static List<Player> HasCustomRole = new List<Player>();
+        public static bool AreTeslasEnabled = true;
 
         public void OnWaitingForPlayers() => HasCustomRole.Clear();
         public void OnSpawned(SpawnedEventArgs ev) => Timing.RunCoroutine(ev.Player.CheckCustomRoles());
@@ -43,7 +44,8 @@ namespace BetterTeslas
                 (ev.Player.IsGodModeEnabled && plugin.Config.DisableWithGodmode) ||
                 (ev.Player.Role.As<FpcRole>().IsNoclipEnabled && plugin.Config.DisableWithNoclip) ||
                 (ev.Player.IsBypassModeEnabled && plugin.Config.DisableWithBypass) ||
-                (ev.Player.IsEffectActive<Invisible>() && plugin.Config.DisableWithScp268))
+                (ev.Player.IsEffectActive<Invisible>() && plugin.Config.DisableWithScp268) ||
+                !AreTeslasEnabled)
             {
                 ev.IsInIdleRange = false;
                 ev.IsAllowed = false;
