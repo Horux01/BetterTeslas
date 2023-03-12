@@ -42,7 +42,7 @@ namespace BetterTeslas
             if (plugin.Config.IgnoredItemsInInv.Any(x => ev.Player.HasItem(x)) ||
                 (ev.Player.CurrentItem != null && plugin.Config.IgnoredItemsInHand.Contains(ev.Player.CurrentItem.Type)) ||
                 (ev.Player.IsGodModeEnabled && plugin.Config.DisableWithGodmode) ||
-                (ev.Player.Role.As<FpcRole>().IsNoclipEnabled && plugin.Config.DisableWithNoclip) ||
+                (ev.Player.Role.Is(out FpcRole fpc) && fpc.IsNoclipEnabled && plugin.Config.DisableWithNoclip) ||
                 (ev.Player.IsBypassModeEnabled && plugin.Config.DisableWithBypass) ||
                 (ev.Player.IsEffectActive<Invisible>() && plugin.Config.DisableWithScp268) ||
                 !AreTeslasEnabled)
